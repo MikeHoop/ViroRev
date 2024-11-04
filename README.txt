@@ -1,4 +1,4 @@
-Grapevine virus rORF finder (Michael Hooper, 2024):
+Grapevine virus rORF finder (Michael Hooper, 2024) (From: Mining for small proteins encoded by the negative-sense strand of positive-sense, single-stranded grapevine viruses (Hooper, 2024):
 
 This program utilises vORFfinder scripts as designed by Gong et al (2021).
 
