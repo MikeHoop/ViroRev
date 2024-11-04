@@ -49,3 +49,5 @@ R Libraries:
 -'phylotools'
 -'DECIPHER'
 -'jsonlite' 
+
+Sample data (dataTest.zip) has been provided as an example of how the output should look like. The blastp, ORF and rSeq folders in the Betaflexiviridae family have been trimmed to a fraction of the size for space and upload reasons.
