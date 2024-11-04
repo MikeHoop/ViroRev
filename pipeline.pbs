@@ -1,0 +1,33 @@
+#!/bin/bash
+#PBS -l walltime=48:00:00
+#PBS -l ncpus=12
+#PBS -l mem=100GB
+#PBS -e pipeline.err
+#PBS -o pipeline.out
+#PBS -q bix
+#PBS -M 28804554@sun.ac.za
+#PBS -m abe
+cd $PBS_O_WORKDIR
+
+module load app/R/4.3.2
+module load python/3.12.0
+module load app/NCBI
+module load app/mafft/7.49
+module load app/miniconda/current
+
+# Enter virus family name below:
+name='Potyviridae'
+
+## Download virus family genome using NCBI datasets command line tools
+python3 datasetFetch.py ${name}
+
+## vORFfinder
+./cmdCalc.sh ${name}
+
+## Take reverse sequences from vORFfinder data files
+python3 rSeqFinder.py ${name}
+
+## Use DIAMOND to blastp files and find any matches
+./diamond blastp -d /new-home/scratch3/zippedNr/nr/nr -q ./data/${name}/${name}_rORFs_multiFasta.fasta -o ./data/${name}/${name}_dblastp_matches.tsv --outfmt 6 qseqid full_qseq sseqid stitle pident length mismatch gapopen qstart qend sstart send evalue bitscore --max-target-seqs 5 --very-sensitive
+
+# Note: You can change the sensitivity of the DIAMOND blast by changing "--very-sensitive" above. See: https://github.com/bbuchfink/diamond/wiki/3.-Command-line-options
