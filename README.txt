@@ -33,3 +33,19 @@ Running on an HPC, simply type (WITHOUT double quotes): "qsub pipeline.pbs"
 	If you do not have bioinformatics queue permissions, remove "#PBS -q bix"
 
 Note: If you do not have access to an HPC, rename "pipeline.pbs" to "pipeline.sh" and you should be able to run the script on Linux by removing all "module load" lines and installing the necessary libraries.
+Necessary libraries:
+-R
+-Python
+-NCBI C++ command line tools
+-mafft
+-miniconda
+Python Libraries:
+-zipfile
+-shutil
+-pandas
+R Libraries:
+-BiocManager
+-'Biostrings'
+-'phylotools'
+-'DECIPHER'
+-'jsonlite' 
